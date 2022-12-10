@@ -13,17 +13,22 @@ using namespace std;
 // Input: [1,2,3,4,5], target = 6
 // Output: [1,3]
 
+// Note: the below algorithm works only when arrah is sorted.
+// Note: using array index, index to last element = array.size - 1
+// Note: vector initialization {2,3,5,6,7,8}
+
 class PairWithTargetSum {
 public:
-  static pair<int, int> search(const vector<int> &arr, int targetSum) {
-    int left = 0, right = arr.size() - 1; // Index = size -1
-    // sort(arr.begin(), arr.end());
+  static pair<int, int> search(vector<int> &arr, int targetSum) {
+    int left = 0, right = arr.size() - 1; //Note: Index = size -1
+    //sort(arr.begin(), arr.end());
     cout << arr[1] << endl;
     while (left < right) {
       int sum = arr[left] + arr[right];
-      cout << sum << endl;
+      cout <<"sum: "<< sum <<": "<<"arr["<<left<<"] = "<<arr[left]<<" "<<
+                                   "arr["<<right<<"] = "<<arr[right]<<endl;
       if (sum == targetSum) {
-        cout<<left<<" ii "<<right<<endl;
+        cout<<left<<" "<<arr[left]<<" ii "<<right<<" "<<arr[right]<<endl;
         return make_pair(left, right);
       }
       if (sum > targetSum)
@@ -38,9 +43,8 @@ public:
 
 int main() {
   std::cout << "Hello World!\n";
-  vector<int> arr = {9, 2, 3, 4, 5};
+  vector<int> arr = {1, 2, 3, 4, 5};  //Note: Vector Initialization
   int targetSum = 6;
-  sort(arr.begin(), arr.end());
   auto result = PairWithTargetSum::search(arr, targetSum);
   cout << result.first << " " << arr[result.second] << endl;
 }
